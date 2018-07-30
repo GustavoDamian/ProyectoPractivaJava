@@ -1,0 +1,15 @@
+com\todo1\hulkstore\persistencia\entities\Venta.class
+com\todo1\hulkstore\persistencia\DAO\TipoArticuloDAO.class
+com\todo1\hulkstore\persistencia\DAO\EmpleadoDAO.class
+com\todo1\hulkstore\persistencia\DAO\GenericoDAO.class
+com\todo1\hulkstore\persistencia\entities\Inventario.class
+com\todo1\hulkstore\persistencia\DAO\InventarioDAO.class
+com\todo1\hulkstore\persistencia\entities\Empleado.class
+com\todo1\hulkstore\persistencia\entities\Articulo.class
+com\todo1\hulkstore\persistencia\DAO\BaseDao.class
+com\todo1\hulkstore\persistencia\entities\Inventario_.class
+com\todo1\hulkstore\persistencia\entities\TipoArticulo.class
+com\todo1\hulkstore\persistencia\entities\DetalleVenta.class
+com\todo1\hulkstore\persistencia\DAO\ArticuloDAO.class
+com\todo1\hulkstore\persistencia\entities\Marca.class
+com\todo1\hulkstore\persistencia\DAO\VentaDAO.class

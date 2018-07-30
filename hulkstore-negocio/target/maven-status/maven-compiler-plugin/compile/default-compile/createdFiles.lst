@@ -1,0 +1,5 @@
+com\todo1\hulkstore\negocio\empleado\GestionEmpleadoServicio.class
+com\todo1\hulkstore\negocio\articulos\GestionTipoArticuloServicio.class
+com\todo1\hulkstore\negocio\inventario\GestionInventarioServicio.class
+com\todo1\hulkstore\negocio\ventas\GestionVentasServicio.class
+com\todo1\hulkstore\negocio\articulos\GestionArticulos.class

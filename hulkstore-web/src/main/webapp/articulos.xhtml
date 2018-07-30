@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>My First JSF Application</title>
+</h:head>
+<h:body>
+	<h3>Venta de Producto</h3>
+	<h:form id="frmArticulo">
+	
+		<p:commandButton value="Pagar"
+									actionListener="#{articuloControlador.pagar()}"
+									
+									update=":frmArticulo" />
+									
+		<p:dataTable id="dataTableArticulo" var="articulo"
+			value="#{articuloControlador.articulos}" paginatorPosition="bottom"
+			emptyMessage="No se encontraron resultados!">
+
+			<f:facet name="header">
+				<div align="left">Articulos disponibles
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					
+					</div>
+			</f:facet>
+
+			<p:column headerText="Código Barras" width="20%">
+				<h:outputText value="#{articulo.codigoBarras}" />
+			</p:column>
+
+			<p:column headerText="Nombre" width="50%">
+				<h:outputText value="#{articulo.nombre}" />
+			</p:column>
+
+			<p:column headerText="Precio" width="50%">
+				<h:outputText value="#{articulo.precio}" />
+			</p:column>
+
+			<p:column headerText="Stock" width="50%">
+				<h:outputText value="#{articuloControlador.retornarStock(articulo)}" />
+			</p:column>
+
+
+
+			<p:column width="15%">
+				<p:commandButton id="selecionarArticulo"
+					update=":formCategoriaActualizar:gridArticulo"
+					oncomplete="PF('dlgEditar').show()" icon="ui-icon-cart"
+					title="Editar">
+					<f:setPropertyActionListener value="#{articulo}"
+						target="#{articuloControlador.articuloSeleccionado}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
+	<h:form id="formCategoriaActualizar">
+		<p:growl id="msgActualizar" showDetail="true" sticky="true" />
+		<p:dialog header="Detalle Articulo" widgetVar="dlgEditar"
+			resizable="false" id="dlgEditar" modal="false">
+			<h:panelGrid id="gridArticulo" columns="2" cellpadding="8">
+
+				<h:outputText id="optCodigoPrincipal"
+					styleClass="etiquetaObligatoria" value="Código:" />
+				<h:outputText
+					value="#{articuloControlador.articuloSeleccionado.codigoArticulo}"
+					onkeypress="this.value=this.value.toUpperCase();"
+					onchange="this.value=this.value.toUpperCase();" required="true" />
+
+				<h:outputText id="optNombre" value="Nombre: " />
+				<p:inputText maxlength="50" size="50"
+					onkeypress="this.value=this.value.toUpperCase();"
+					onchange="this.value=this.value.toUpperCase();"
+					value="#{articuloControlador.articuloSeleccionado.nombre}"
+					readonly="true" />
+
+				<h:outputText id="optCodigoBarras" styleClass="etiquetaObligatoria"
+					value="Codigo de Barras " />
+				<p:inputText maxlength="50" size="50"
+					onkeypress="this.value=this.value.toUpperCase();"
+					onchange="this.value=this.value.toUpperCase();"
+					value="#{articuloControlador.articuloSeleccionado.codigoBarras}"
+					readonly="true" />
+
+				<h:outputText id="optPrecio" styleClass="etiquetaObligatoria"
+					value="Precio Unida $ " />
+				<p:inputText maxlength="50" size="50"
+					onkeypress="this.value=this.value.toUpperCase();"
+					onchange="this.value=this.value.toUpperCase();"
+					value="#{articuloControlador.articuloSeleccionado.precio}"
+					readonly="true" />
+
+
+				<h:outputText id="optCantidad" styleClass="etiquetaObligatoria"
+					value="cantidad " />
+				<p:inputText maxlength="50" size="50"
+					value="#{articuloControlador.detalleVenta.cantidadVendida}"
+				 />
+
+				<f:facet name="footer">
+					<div id="divFooterActualizar" style="text-align: left">
+
+						<p:commandButton value="Agregar"
+							actionListener="#{articuloControlador.AgregarArticulos}"
+							oncomplete="PF('dlgEditar').hide()"
+							update=":frmArticulo:dataTableArticulo" />
+
+						<p:commandButton value="Cancelar"
+							oncomplete="PF('dlgEditar').hide()" />
+					</div>
+				</f:facet>
+
+			</h:panelGrid>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
